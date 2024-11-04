@@ -1,10 +1,16 @@
 package com.MediApp.MediApp.model.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,14 +35,26 @@ public class Medico {
     @Column(name="apellido")
     private String apellido;
 
+    @Enumerated(EnumType.STRING)
     @Column(name="especialidad")
-    private String especialidad;
+    private Especialidad especialidad;
 
     @Column(name="numero_licencia")
     private String numero_licencia;
 
     @Column(name="telefono")
     private String telefono;
+
+
+     @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Enfermera> enfermeras;
+
+
+    public enum Especialidad{
+        Cirujano,
+        Pediatra,
+        Otros
+    }
 
     public Long getId_medico(){
         return id_medico;
@@ -59,10 +77,11 @@ public class Medico {
         this.apellido=apellido;
     }
 
-    public String especialidad(){
+    public Especialidad especialidad(){
         return especialidad;
     }
-    public void setEspecialidad(String especialidad){
+
+    public void setEspecialidad(Especialidad especialidad){
         this.especialidad= especialidad;
     }
 

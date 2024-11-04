@@ -59,7 +59,7 @@ public class PacienteController {
     }
 
     // Obtener todos los pacientes
-    @GetMapping
+    @GetMapping("paciente")
     public ResponseEntity<List<Paciente>> getAllPacientes() {
         List<Paciente> pacientes = pacienteServcie.findAll();
         return new ResponseEntity<>(pacientes, HttpStatus.OK);

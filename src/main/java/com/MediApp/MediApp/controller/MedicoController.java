@@ -19,7 +19,7 @@ public class MedicoController {
     private InterfaceMedico medicoService;
 
     @PostMapping("medico")
-    public Medico creatMedico(@RequestBody Medico medico){
+    public Medico createMedico(@RequestBody Medico medico){
         return medicoService.save(medico);
     }
 
