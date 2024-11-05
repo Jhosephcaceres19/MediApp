@@ -1,6 +1,5 @@
 package com.MediApp.MediApp.model.entity;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import jakarta.persistence.Column;
@@ -23,37 +22,36 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @ToString
-@Table(name = "cita")
-public class Cita {
+@Table(name = "hora")
+public class Hora {
     @Id
-    @Column(name = "id_cita")
+    @Column(name = "id_hora")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_cita;
-    @Column(name = "fecha")
-    private LocalDate fecha;
-    @Column(name = "hora")
-    private LocalTime hora;
-
-    @Column(name = "estado")
-    @Enumerated(EnumType.STRING)
-    private Estado estado;
+    private Long id_hora;
     
     @ManyToOne
     @JoinColumn(name = "id_medico")
     private Medico medico;
 
-    @ManyToOne
-    @JoinColumn(name="id_paciente")
-    private Paciente paciente;
+    
+    @Column(name = "diaSemana")
 
-    @ManyToOne
-    @JoinColumn(name = "id_administrador")
-    private Administrador administrador;
+    @Enumerated(EnumType.STRING)
+    private DiaSemana diaSemana;
 
-    public enum Estado{
-        Pendiente,
-        Confirmada,
-        Cancelada
+    @Column(name = "horaInicio")
+    private LocalTime horaInicio;
+    @Column(name = "horaFIn")
+    private LocalTime horaFin;
+
+
+    public enum DiaSemana{
+        Lunes,
+        Martes,
+        Miercoles,
+        Jueves,
+        Viernes,
+        Sabado
     }
 
 }

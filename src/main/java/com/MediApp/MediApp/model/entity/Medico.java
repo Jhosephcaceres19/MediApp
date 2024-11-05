@@ -46,8 +46,14 @@ public class Medico {
     private String telefono;
 
 
-     @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Enfermera> enfermeras;
+
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Hora> horas;
+
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cita> citas;
 
 
     public enum Especialidad{

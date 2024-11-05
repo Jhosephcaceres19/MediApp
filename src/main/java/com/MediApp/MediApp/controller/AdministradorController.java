@@ -28,7 +28,7 @@ public class AdministradorController {
         return adminstradorService.findById(id_administrador);
     }
 
-    @DeleteMapping("medico/{id_medico}")
+    @DeleteMapping("administrador/{id_medico}")
     public void deleteAdministrador(@PathVariable Long id_administrador){
         Administrador administradorDelete = adminstradorService.findById(id_administrador);
         adminstradorService.delete(administradorDelete);
