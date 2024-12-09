@@ -21,25 +21,25 @@ import com.MediApp.MediApp.service.InterfacePaciente;
 @RequestMapping("/api/v1")
 public class PacienteController {
     @Autowired
-    private InterfacePaciente pacienteServcie;
+    private InterfacePaciente pacienteService;
 
     @PostMapping("paciente")
     public Paciente createPaciente(@RequestBody Paciente paciente){
-        return pacienteServcie.save(paciente);
+        return pacienteService.save(paciente);
     }
 
-    @GetMapping("paciente/(id_paciente)")
+    @GetMapping("paciente/{id_paciente}")
     public Paciente showPaciente(@PathVariable Long id_paciente){
-        return pacienteServcie.findById(id_paciente);
+        return pacienteService.findById(id_paciente);
     }
     
 
     @PutMapping("paciente/{id}")
     public ResponseEntity<Paciente> updatePaciente(@PathVariable("id") Long id, @RequestBody Paciente paciente) {
-        Paciente existingPaciente = pacienteServcie.findById(id);
+        Paciente existingPaciente = pacienteService.findById(id);
         if (existingPaciente != null) {
             paciente.setId_paciente(id);  // Asegurarse de que el ID se mantenga igual
-            Paciente updatedPaciente = pacienteServcie.update(paciente);
+            Paciente updatedPaciente = pacienteService.update(paciente);
             return new ResponseEntity<>(updatedPaciente, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -49,9 +49,9 @@ public class PacienteController {
     // Eliminar un paciente
     @DeleteMapping("paciente/{id}")
     public ResponseEntity<Void> deletePaciente(@PathVariable("id") Long id) {
-        Paciente paciente = pacienteServcie.findById(id);
+        Paciente paciente = pacienteService.findById(id);
         if (paciente != null) {
-            pacienteServcie.delete(paciente);
+            pacienteService.delete(paciente);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -61,7 +61,7 @@ public class PacienteController {
     // Obtener todos los pacientes
     @GetMapping("paciente")
     public ResponseEntity<List<Paciente>> getAllPacientes() {
-        List<Paciente> pacientes = pacienteServcie.findAll();
+        List<Paciente> pacientes = pacienteService.findAll();
         return new ResponseEntity<>(pacientes, HttpStatus.OK);
     }
 

@@ -35,7 +35,6 @@ public class Hora {
 
     
     @Column(name = "diaSemana")
-
     @Enumerated(EnumType.STRING)
     private DiaSemana diaSemana;
 

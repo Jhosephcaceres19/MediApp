@@ -23,7 +23,7 @@ public class MedicoController {
         return medicoService.save(medico);
     }
 
-    @GetMapping("medico/(id_medico)")
+    @GetMapping("medico/{id_medico}")
     public Medico showMedico(@PathVariable Long id_medico){
         return medicoService.findById(id_medico);
     }

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.MediApp.MediApp.model.entity.Hora;
+import com.MediApp.MediApp.model.entity.Medico;
 import com.MediApp.MediApp.service.InterfaceHora;
+import com.MediApp.MediApp.service.InterfaceMedico;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -21,8 +23,8 @@ public class HoraController {
     private InterfaceHora horaService;
 
     @PostMapping("hora")
-    public Hora createHora(@RequestBody Hora hora){
-        return horaService.saveHora(hora);
+    public ResponseEntity<Hora> createHora(@RequestBody Hora hora) {
+        return ResponseEntity.ok(horaService.saveHora(hora));
     }
 
     @GetMapping("hora/{id_hora}")
